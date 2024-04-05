@@ -1,14 +1,17 @@
 import './App.css';
+import { ApolloProvider } from '@apollo/client';
+import { client } from './apollo-client'; // Import your Apollo Client instance
 import { Outlet } from 'react-router-dom';
-
 import Navbar from './components/Navbar';
 
 function App() {
   return (
-    <>
-      <Navbar />
-      <Outlet />
-    </>
+    <ApolloProvider client={client}>
+      <>
+        <Navbar />
+        <Outlet />
+      </>
+    </ApolloProvider>
   );
 }
 
