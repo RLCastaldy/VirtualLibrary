@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useMutation } from '@apollo/client';
-import { SAVE_BOOK } from '../queries'; // Import the SAVE_BOOK mutation query
+import { SAVE_BOOK } from '../utils/mutations'; // Import the SAVE_BOOK mutation query
 import { Container, Col, Form, Button, Card, Row } from 'react-bootstrap';
 import Auth from '../utils/auth';
 import { searchGoogleBooks } from '../utils/API';
