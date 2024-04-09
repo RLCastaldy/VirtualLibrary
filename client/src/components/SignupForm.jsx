@@ -18,7 +18,6 @@ const SignupForm = () => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log(userFormData);
 
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
@@ -34,6 +33,7 @@ const SignupForm = () => {
           password: userFormData.password
         }
       });
+      console.log(userFormData);
 
       const { token, user } = data.addUser;
       console.log(user);
