@@ -4,7 +4,7 @@ import { Outlet } from 'react-router-dom';
 import Navbar from './components/Navbar';
 
 const client = new ApolloClient({
-  uri: 'https://localhost:3002/',
+  uri: 'http://localhost:3001/',
   cache: new InMemoryCache()
 });
 

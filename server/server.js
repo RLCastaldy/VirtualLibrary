@@ -1,31 +1,22 @@
 const express = require('express');
-const path = require('path');
 const { ApolloServer } = require('apollo-server-express');
-const db = require('./config/connection');
-const { resolvers, typeDefs } = require('./schemas/index');
+const { typeDefs, resolvers } = require('./schemas');
 
-const startApolloServer = async () => {
-  const app = express();
-  const PORT = process.env.PORT || 3002;
+const app = express();
+const PORT = process.env.PORT || 3001;
 
-  app.use(express.urlencoded({ extended: true }));
-  app.use(express.json());
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+});
 
-  // Serve static assets in production
-  if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, '../client/build')));
-  }
-
-  const server = new ApolloServer({ typeDefs, resolvers });
-
+async function startServer() {
   await server.start();
   server.applyMiddleware({ app });
+}
 
-  db.once('open', () => {
-    app.listen(PORT, () => {
-      console.log(`🚀 Server ready at http://localhost:${PORT}${server.graphqlPath}`);
-    });
+startServer().then(() => {
+  app.listen(PORT, () => {
+    console.log(`Server listening at http://localhost:${PORT}`);
   });
-};
-
-startApolloServer();
+});

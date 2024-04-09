@@ -8,13 +8,13 @@ export const getMe = (token) => {
   });
 };
 
-export const createUser = (userData) => {
-  return fetch('/api/users', {
+export const createUser = (userFormData) => {
+  return fetch('http://localhost:3001/api/users/', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(userData),
+    body: JSON.stringify(userFormData),
   });
 };
 
